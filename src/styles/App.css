@@ -1,0 +1,20 @@
+
+.round-10 {
+  border-radius: 1rem;
+}
+
+.simplebox {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.p-wrap {
+  white-space: pre-wrap;
+}
+
+.no-resize {
+  resize: none;
+}
