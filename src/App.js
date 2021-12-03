@@ -5,8 +5,8 @@ import {
   Container, 
   Row 
 } from 'react-bootstrap';
-
 import InputForm from './components/InputForm.js';
+import Dashboard from './components/Dashboard.js';
 
 function App() {
   const [notesData, setNotesData] = useState([]);
@@ -38,7 +38,7 @@ function App() {
         <InputForm notesData={notesData} setNotesData={setNotesData} {...functions} />
       </Row>
       <Row>
-        {/* <Dashboard /> */}
+        <Dashboard notesData={notesData} />
       </Row>
     </Container>
   );
