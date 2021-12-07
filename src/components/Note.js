@@ -6,7 +6,7 @@ import {
 
 export default function Note(props) {
   return (
-    <Col xs={3} className="p-1">
+    <Col className="p-2">
       <Card className="shadow-sm" style={{ width: "" }}>
         <Card.Body className="py-2">
           <Card.Title>{props.note.title}</Card.Title>

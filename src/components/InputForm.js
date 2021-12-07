@@ -32,7 +32,7 @@ export default function InputForm(props) {
   }
 
   return (
-    <Col xs={8} className="offset-2 mt-5 mb-5 px-0 border rounded shadow">
+    <Col xs={8} sm={4} className="offset-2 offset-sm-4 mt-5 mb-5 px-0 border rounded shadow">
       <InputGroup>
         <Form.Control
           className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"
