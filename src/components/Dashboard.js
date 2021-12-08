@@ -1,16 +1,12 @@
 import React from 'react';
 import Note from './Note.js';
 import Masonry from 'react-masonry-css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import InputForm from './InputForm.js';
 
 export default function Dashboard(props) {
   const [notesData, setNotesData] = useState([]);
-
-  useEffect(() => {
-    console.log(notesData);
-  });
 
   return (
     <>

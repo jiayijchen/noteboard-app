@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Form, Button, Row, Modal } from 'react-bootstrap';
 
 export default function Login(props) {
@@ -32,16 +32,17 @@ export default function Login(props) {
 
 
       .then(function (response) {
-        localStorage.setItem('authToken', response.data.access_token)
-        props.setToken(response.data.access_token)
+        localStorage.setItem('authToken', response.data.access_token);
+        props.setToken(response.data.access_token);
+        props.setLoginShow(false);
         console.log("Login successful.");
-        console.log(response);
+        // console.log(response);
       })
 
       .catch(function (error) {
         console.log(error);
       });
-      
+
 }
 
 function handleChange(event) {
@@ -52,7 +53,7 @@ function handleChange(event) {
 }
 
 return (
-  <Modal {...props} size="sm" centered>
+  <Modal show={props.loginShow} onHide={() => props.setLoginShow(false)} size="sm" centered>
     <Modal.Header closeButton className="text-center py-0" >
       <Modal.Title className="ps-3 pt-2 w-100">log in</Modal.Title>
     </Modal.Header>
