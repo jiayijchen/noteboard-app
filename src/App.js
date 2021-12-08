@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { axiosHelper } from './utilities/axiosHelper';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const [token, setToken] = useState('');
@@ -23,6 +24,7 @@ function App() {
     <div className="App">
       <Header token={token} setToken={setToken} userData={userData} />
       <Dashboard />
+      <Footer />
     </div>
   );
 }
