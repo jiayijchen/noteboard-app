@@ -25,11 +25,11 @@ export default function InputForm(props) {
     }
   }
 
-  function enterKey(event) {
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
-  }
+  // function enterKey(event) {
+  //   if (event.key === "Enter") {
+  //     handleSubmit();
+  //   }
+  // }
 
   return (
     <Col xs={8} sm={4} className="offset-2 offset-sm-4 mt-5 mb-5 px-0 border rounded shadow">

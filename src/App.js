@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './styles/App.css';
 import {
-  Container,
-  Col,
   Row
 } from 'react-bootstrap';
 import InputForm from './components/InputForm.js';
 import Dashboard from './components/Dashboard.js';
-import NavBar from './components/NavBar';
+import Header from './components/Header';
 
 function App() {
+  const [token, setToken] = useState('');
   const [notesData, setNotesData] = useState([]);
   // const [dashboard, setDashboard] = useState([]);
 
@@ -36,9 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <Row>
-        <NavBar />
-      </Row>
+      <Header token={token} setToken={setToken} />
       <Row>
         <InputForm notesData={notesData} setNotesData={setNotesData} {...functions} />
       </Row>

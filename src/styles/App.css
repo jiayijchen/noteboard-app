@@ -19,6 +19,19 @@
   resize: none;
 }
 
+.modal-header {
+    border-bottom: 0 !important;
+}
+
+.modal-footer {
+    border-top: 0 !important;
+}
+
+.close { 
+    position: absolute; 
+    right: 1rem;
+  }
+
 .my-masonry-grid {
   /* display: -webkit-box;
   display: -ms-flexbox; */
