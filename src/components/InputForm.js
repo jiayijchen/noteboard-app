@@ -20,19 +20,23 @@ export default function InputForm(props) {
 
   function handleSubmit() {
     if ('body' in note) {
-      props.addNote(note);
+      addNote(note);
       setNote({});
     }
   }
 
-  function enterKey(event) {
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
+  function addNote(note) {
+    props.setNotesData([...props.notesData, note]);
   }
 
+  // function enterKey(event) {
+  //   if (event.key === "Enter") {
+  //     handleSubmit();
+  //   }
+  // }
+
   return (
-    <Col xs={8} className="offset-2 mt-5 mb-5 px-0 border rounded shadow">
+    <Col xs={8} sm={4} className="offset-2 offset-sm-4 mt-5 mb-5 px-0 border rounded shadow">
       <InputGroup>
         <Form.Control
           className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"

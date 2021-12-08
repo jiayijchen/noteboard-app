@@ -1,46 +1,29 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import './styles/App.css';
-import { 
-  Container, 
-  Row 
-} from 'react-bootstrap';
-import InputForm from './components/InputForm.js';
-import Dashboard from './components/Dashboard.js';
+import { useState, useEffect } from 'react';
+import { axiosHelper } from './utilities/axiosHelper';
+import Dashboard from './components/Dashboard';
+import Header from './components/Header';
 
 function App() {
-  const [notesData, setNotesData] = useState([]);
-  // const [dashboard, setDashboard] = useState([]);
-  
-  // async function getNotes() {
-  //   try {
-  //     const response = await axios.get('notes.json');
-  //     setNotesData(response.data);
-  //     // console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  const functions = {
-    addNote: (note) => {
-      setNotesData([...notesData, note]);
-    }
-  }
+  const [token, setToken] = useState('');
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    console.log(notesData);
-  });
+    if (token.length > 0) {
+      axiosHelper({
+        method: "get",
+        route: "api/v1/user",
+        token: token,
+        successMethod: setUserData
+      })
+    }
+  }, [token])
 
   return (
-    <Container className="App">
-      <Row>
-        <InputForm notesData={notesData} setNotesData={setNotesData} {...functions} />
-      </Row>
-      <Row>
-        <Dashboard notesData={notesData} />
-      </Row>
-    </Container>
+    <div className="App">
+      <Header token={token} setToken={setToken} userData={userData} />
+      <Dashboard />
+    </div>
   );
 }
 
