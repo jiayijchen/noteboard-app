@@ -5,19 +5,33 @@ import Login from './Login';
 export default function Header(props) {
   const [loginShow, setLoginShow] = React.useState(false);
 
+  function isLoggedIn() {
+    if (!props.token) {
+      return (
+        <>
+          <Button 
+              variant="light" 
+              className="bg-white border-0 text-muted me-1"
+              onClick={() => setLoginShow(true)}
+          >
+            log in
+            </Button>
+          <Button variant="light" className="bg-white border-0 text-muted me-1">sign up</Button>
+        </>
+      )
+    } else { 
+      return (
+        <h3>Hi</h3> 
+      )
+    }
+  }
+
   return (
     <div>
       <Navbar>
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <Button 
-              variant="light" 
-              className="bg-white border-0 text-muted me-1"
-              onClick={() => setLoginShow(true)}
-            >
-              log in
-            </Button>
-            <Button variant="light" className="bg-white border-0 text-muted me-1">sign up</Button>
+            {isLoggedIn()}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

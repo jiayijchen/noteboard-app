@@ -10,7 +10,7 @@ import Header from './components/Header';
 
 function App() {
   const [token, setToken] = useState('');
-  const [notesData, setNotesData] = useState([]);
+  // const [notesData, setNotesData] = useState([]);
   // const [dashboard, setDashboard] = useState([]);
 
   // async function getNotes() {
@@ -23,25 +23,20 @@ function App() {
   //   }
   // }
 
-  const functions = {
-    addNote: (note) => {
-      setNotesData([...notesData, note]);
-    }
-  }
+  // const functions = {
+  //   addNote: (note) => {
+  //     setNotesData([...notesData, note]);
+  //   }
+  // }
 
   useEffect(() => {
-    console.log(notesData);
+    console.log(token);
   });
 
   return (
     <div className="App">
-      <Header token={token} setToken={setToken} />
-      <Row>
-        <InputForm notesData={notesData} setNotesData={setNotesData} {...functions} />
-      </Row>
-      <Row>
-        <Dashboard notesData={notesData} />
-      </Row>
+      <Header token={token} setToken={setToken} /> 
+      <Dashboard />
     </div>
   );
 }

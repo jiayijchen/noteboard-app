@@ -20,9 +20,13 @@ export default function InputForm(props) {
 
   function handleSubmit() {
     if ('body' in note) {
-      props.addNote(note);
+      addNote(note);
       setNote({});
     }
+  }
+
+  function addNote(note) {
+    props.setNotesData([...props.notesData, note]);
   }
 
   // function enterKey(event) {
