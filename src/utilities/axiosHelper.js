@@ -10,7 +10,7 @@ export const axiosHelper = ({
 }) => {
   return axios({
     method,
-    url: "https://laravel-jiayichen.codeanyapp.com/" + route,
+    url: "https://laravel-jiayichen.codeanyapp.com" + route,
     data,
     headers: {
       "Accept": "application/json",

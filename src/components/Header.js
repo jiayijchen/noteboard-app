@@ -2,16 +2,18 @@ import React from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import LoginForm from './LoginForm';
 import LoggedInMenu from './LoggedInMenu';
+import { useAuth } from '../utilities/AuthContext';
 
-export default function Header(props) {
+export default function Header() {
   const [loginShow, setLoginShow] = React.useState(false);
+  const { token } = useAuth();
 
   return (
-    <div>
+    <>
       <Navbar>
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            {props.token.length === 0
+            {token.length === 0
               ? (
                 <>
                   <Button
@@ -24,15 +26,7 @@ export default function Header(props) {
                   <Button variant="light" className="bg-white border-0 text-muted me-1">sign up</Button>
                 </>
               )
-              : (
-                <>
-                  <LoggedInMenu name={props.userData?.name} />
-                  {/* <Button variant="light" className="bg-white border-0 text-muted simplebox me-1"><i className="bi-person-circle h3" /></Button> */}
-                  {/* <p className="text-muted mt-3 me-1">Hello, {props.userData.name}
-                    <Button variant="light" className="bg-white border-0 text-muted me-1">log out</Button>
-                  </p> */}
-                </>
-              )
+              : <LoggedInMenu />
             }
           </Nav>
         </Navbar.Collapse>
@@ -41,8 +35,7 @@ export default function Header(props) {
       <LoginForm
         loginShow={loginShow}
         setLoginShow={setLoginShow}
-        {...props}
       />
-    </div>
+    </>
   )
 }
