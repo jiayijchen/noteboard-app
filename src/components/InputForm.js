@@ -1,20 +1,69 @@
 import React from 'react';
-import { 
+import { useState } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
+import {
   Col,
-  Form 
+  InputGroup,
+  Form,
+  Button
 } from 'react-bootstrap';
 
-export default function InputForm() {
+export default function InputForm(props) {
+  const [note, setNote] = useState({});
+
+  function handleChange(event) {
+    setNote(prevNote => ({
+      ...prevNote,
+      [event.target.name]: event.target.value,
+    }))
+  }
+
+  function handleSubmit() {
+    if ('body' in note) {
+      addNote(note);
+      setNote({});
+    }
+  }
+
+  function addNote(note) {
+    props.setNotesData([...props.notesData, note]);
+  }
+
+  // function enterKey(event) {
+  //   if (event.key === "Enter") {
+  //     handleSubmit();
+  //   }
+  // }
+
   return (
-    <Col xs={10} className="offset-1 mt-4 px-0 border rounded">
-      <Form className="mx-0">
-        <Form.Group controlId="noteTitle">
-          <Form.Control type="title" className="border-0 border-bottom rounded-0" placeholder="Title" />
-        </Form.Group>
-        <Form.Group className="" controlId="noteContent">
-          <Form.Control as="textarea" className="border-0" rows={2} placeholder="Start a new note.."/>
-        </Form.Group>
-      </Form>
+    <Col xs={8} sm={4} className="offset-2 offset-sm-4 mt-5 mb-5 px-0 border rounded shadow">
+      <InputGroup>
+        <Form.Control
+          className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"
+          placeholder="Title"
+          type="title"
+          name="title"
+          value={note.title || ''}
+          onChange={handleChange} />
+      </InputGroup>
+      <InputGroup>
+        <TextareaAutosize
+          className="border-0 rounded-bottom simplebox vw-100 px-3 pt-1 pb-4 no-resize"
+          placeholder="Enter a new note.."
+          type="text"
+          name="body"
+          value={note.body || ''}
+          onChange={handleChange}
+          // onKeyPress={enterKey}
+        />
+        <Button
+          className="position-absolute bottom-0 end-0 bg-white simplebox text-secondary"
+          onClick={() => handleSubmit()}
+          // style= {{ visibility: "hidden" }}
+        >
+          Save
+        </Button>
+      </InputGroup>
     </Col>
   )
 }

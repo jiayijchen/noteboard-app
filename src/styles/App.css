@@ -1,0 +1,48 @@
+
+.round-10 {
+  border-radius: 1rem;
+}
+
+.simplebox {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.p-wrap {
+  white-space: pre-wrap;
+}
+
+.no-resize {
+  resize: none;
+}
+
+.modal-header {
+    border-bottom: 0 !important;
+}
+
+.modal-footer {
+    border-top: 0 !important;
+}
+
+.close { 
+    position: absolute; 
+    right: 1rem;
+  }
+
+.my-masonry-grid {
+  /* display: -webkit-box;
+  display: -ms-flexbox; */
+  display: flex;
+  -webkit-box-display: flex;
+  /* margin-left: -30px; */
+  /* width: auto; */
+}
+.my-masonry-grid_column {
+  /* padding-left: 30px; gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
