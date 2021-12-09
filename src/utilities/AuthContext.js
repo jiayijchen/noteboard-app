@@ -19,11 +19,17 @@ export const AuthHelper = () => {
     }
   }, [])
 
-  function saveToken(res) {
-    const APItoken = res.data.data.token || res.data.access_token;
+  useEffect(() => {
+    if(token.length > 0) {
+      getUser();
+    }
+  }, [token])
+
+  function saveToken(res, showLogin) {
+    const APItoken = res.data.access_token // || res.data.data.token;
     setToken(APItoken);
-    getUser();
     window.localStorage.setItem('token', APItoken);
+    showLogin(false);
   }
 
   function saveUserData(res) {
@@ -47,21 +53,21 @@ export const AuthHelper = () => {
   }
 
   // log in
-  function login(loginData) {
+  function login(loginData, f) {
     axiosHelper({
       data: loginData,
       method: 'post',
       route: '/oauth/token', 
-      successMethod: saveToken
+      successMethod: (r)=>saveToken(r, f)
     })
   }
 
   // log out
   function logout() {
     axiosHelper({
-      url: '/api/auth/logout',
-      successMethod: destroyToken,
-      token: token
+      url: '/api/v1/logout',
+      token,
+      successMethod: destroyToken
     })
   }
 
@@ -69,8 +75,8 @@ export const AuthHelper = () => {
   function getUser() {
     axiosHelper({
       method: "get",
-      route: "/api/v1/user",
-      token: token,
+      route: '/api/v1/user',
+      token,
       successMethod: saveUserData
     })
   }

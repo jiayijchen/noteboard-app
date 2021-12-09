@@ -5,7 +5,7 @@ import {
 import { useAuth } from '../utilities/AuthContext';
 
 export default function LoggedInMenu(props) {
-  const { userData } = useAuth();
+  const { userData, logout } = useAuth();
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function LoggedInMenu(props) {
 
         <Dropdown.Menu>
           <Dropdown.Item>{userData.name}</Dropdown.Item>
-          <Dropdown.Item as="button" variant="light">log out</Dropdown.Item>
+          <Dropdown.Item as="button" variant="light" onClick={logout}>log out</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </>

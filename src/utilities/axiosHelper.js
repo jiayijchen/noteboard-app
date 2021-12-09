@@ -22,9 +22,6 @@ export const axiosHelper = ({
       "Authorization": "Bearer " + token,
     }
   })
-    .then(response => {
-      successMethod(response.data);
-      console.log(response.data);
-    })
-    .catch(error => failureMethod(error));
+    .then(successMethod)
+    .catch(failureMethod);
 }
