@@ -1,38 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Nav, Navbar } from 'react-bootstrap';
 import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 import LoggedInMenu from './LoggedInMenu';
+import { useAuth } from '../utilities/AuthContext';
 
-export default function Header(props) {
-  const [loginShow, setLoginShow] = React.useState(false);
+export default function Header() {
+  const [loginShow, setLoginShow] = useState(false);
+  const [registerShow, setRegisterShow] = useState(false);
+  const { token } = useAuth();
 
   return (
-    <div>
-      <Navbar>
+    <>
+      <Navbar className="py-0" style={{ maxHeight: "40px" }}>
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            {props.token.length === 0
+            {token.length === 0
               ? (
                 <>
                   <Button
                     variant="light"
-                    className="bg-white border-0 text-muted me-1"
+                    className="bg-white border-0 mt-1 text-muted simplebox"
                     onClick={() => setLoginShow(true)}
                   >
                     log in
                   </Button>
-                  <Button variant="light" className="bg-white border-0 text-muted me-1">sign up</Button>
+                  <Button 
+                    variant="light" 
+                    className="bg-white border-0 mt-1 text-muted simplebox"
+                    onClick={() => setRegisterShow(true)}
+                  >
+                    sign up
+                  </Button>
                 </>
               )
-              : (
-                <>
-                  <LoggedInMenu name={props.userData?.name} />
-                  {/* <Button variant="light" className="bg-white border-0 text-muted simplebox me-1"><i className="bi-person-circle h3" /></Button> */}
-                  {/* <p className="text-muted mt-3 me-1">Hello, {props.userData.name}
-                    <Button variant="light" className="bg-white border-0 text-muted me-1">log out</Button>
-                  </p> */}
-                </>
-              )
+              : <LoggedInMenu />
             }
           </Nav>
         </Navbar.Collapse>
@@ -41,8 +43,12 @@ export default function Header(props) {
       <LoginForm
         loginShow={loginShow}
         setLoginShow={setLoginShow}
-        {...props}
       />
-    </div>
+
+      <RegisterForm
+        registerShow={registerShow}
+        setRegisterShow={setRegisterShow}
+      />
+    </>
   )
 }

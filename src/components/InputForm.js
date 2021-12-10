@@ -40,7 +40,7 @@ export default function InputForm(props) {
       <InputGroup>
         <Form.Control
           className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"
-          placeholder="Title"
+          placeholder="title"
           type="title"
           name="title"
           value={note.title || ''}
@@ -49,7 +49,7 @@ export default function InputForm(props) {
       <InputGroup>
         <TextareaAutosize
           className="border-0 rounded-bottom simplebox vw-100 px-3 pt-1 pb-4 no-resize"
-          placeholder="Enter a new note.."
+          placeholder="enter a new note.."
           type="text"
           name="body"
           value={note.body || ''}
@@ -61,7 +61,7 @@ export default function InputForm(props) {
           onClick={() => handleSubmit()}
           // style= {{ visibility: "hidden" }}
         >
-          Save
+          save
         </Button>
       </InputGroup>
     </Col>
