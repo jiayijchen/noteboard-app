@@ -56,7 +56,7 @@ export default function LoginForm(props) {
             />
           </Form.Group>
           <Row>
-            <Button variant="dark" type="submit" className="col-4 offset-4">Submit</Button>
+            <Button variant="dark" type="submit" className="col-4 offset-4">log in</Button>
           </Row>
         </Form>
       </Modal.Body>

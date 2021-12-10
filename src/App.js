@@ -9,14 +9,6 @@ import {
 } from './utilities/AuthContext';
 
 function App() {
-  // const { token, getUser } = useAuth();
-
-  // useEffect(() => {
-  //   if (token) {
-  //     getUser();
-  //   }
-  // }, [token])
-
   return (
     <div className="App">
       <AuthProvider>

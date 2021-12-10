@@ -10,7 +10,7 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <Row>
+      <Row className="vw-100">
         <InputForm notesData={notesData} setNotesData={setNotesData} />
       </Row>
       <Row>

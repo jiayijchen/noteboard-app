@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import { useAuth } from '../utilities/AuthContext';
 
-export default function LoggedInMenu(props) {
+export default function LoggedInMenu() {
   const { userData, logout } = useAuth();
 
   return (

@@ -43,12 +43,12 @@ export const AuthHelper = () => {
   }
 
   // sign up
-  function register(regisData) {
+  function register(registerData, f) {
     axiosHelper({
-      data: regisData,
+      data: registerData,
       method: 'post',
-      route: '/api/auth/register', 
-      successMethod: saveToken
+      route: '/api/register', 
+      successMethod: (r) => saveToken(r, f)
     })
   }
 
@@ -65,7 +65,8 @@ export const AuthHelper = () => {
   // log out
   function logout() {
     axiosHelper({
-      url: '/api/v1/logout',
+      method: 'get',
+      route: '/api/v1/logout',
       token,
       successMethod: destroyToken
     })
@@ -81,7 +82,7 @@ export const AuthHelper = () => {
     })
   }
 
-  return { token, userData, register, login, logout, getUser};
+  return { token, userData, register, login, logout};
 }
 
 // custom Provider component

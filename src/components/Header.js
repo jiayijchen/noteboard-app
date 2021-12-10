@@ -20,14 +20,15 @@ export default function Header() {
                 <>
                   <Button
                     variant="light"
-                    className="bg-white border-0 text-muted me-1"
+                    className="bg-white border-0 text-muted simplebox"
                     onClick={() => setLoginShow(true)}
                   >
                     log in
                   </Button>
                   <Button 
                     variant="light" 
-                    className="bg-white border-0 text-muted me-1"
+                    className="bg-white border-0 text-muted simplebox"
+                    onClick={() => setRegisterShow(true)}
                   >
                     sign up
                   </Button>

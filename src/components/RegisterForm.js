@@ -10,14 +10,11 @@ export default function RegisterForm(props) {
   function submitRegister(e) {
     e.preventDefault();
     const data = {
-    //   "grant_type": "password",
-    //   "client_id": 2,
-    //   "client_secret": "Z93Jt2oPyAgmcHu7EzqxX37wXSNiQ8CmmvGNbwqN",
-    //   "username": RegisterData.email,
-    //   "password": RegisterData.password,
-    //   "scope": "",
+      "name": registerData.name,
+      "email": registerData.email,
+      "password": registerData.password,
     };
-    register(data);
+    register(data, props.setRegisterShow);
 
   }
 
@@ -29,12 +26,21 @@ export default function RegisterForm(props) {
   }
 
   return (
-    <Modal show={props.RegisterShow} onHide={() => props.setRegisterShow(false)} size="sm" centered>
+    <Modal show={props.registerShow} onHide={() => props.setRegisterShow(false)} size="sm" centered>
       <Modal.Header closeButton className="text-center py-0" >
-        <Modal.Title className="ps-3 pt-2 w-100">log in</Modal.Title>
+        <Modal.Title className="ps-3 pt-2 w-100">sign up</Modal.Title>
       </Modal.Header>
       <Modal.Body className="text-center pt-1">
         <Form className="col-10 offset-1" onSubmit={submitRegister}>
+          <Form.Group className="mb-1">
+            <Form.Control
+              className="text-center pb-0 border-0 border-bottom simplebox"
+              name="name"
+              placeholder="full name"
+              value={registerData.name || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
           <Form.Group className="mb-1">
             <Form.Control
               className="text-center pb-0 border-0 border-bottom simplebox"
@@ -56,7 +62,7 @@ export default function RegisterForm(props) {
             />
           </Form.Group>
           <Row>
-            <Button variant="dark" type="submit" className="col-4 offset-4">Submit</Button>
+            <Button variant="dark" type="submit" className="col-4 offset-4">sign up</Button>
           </Row>
         </Form>
       </Modal.Body>
