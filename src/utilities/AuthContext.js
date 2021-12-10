@@ -25,11 +25,11 @@ export const AuthHelper = () => {
     }
   }, [token])
 
-  function saveToken(res, showLogin) {
-    const APItoken = res.data.access_token // || res.data.data.token;
+  function saveToken(res, showForm) {
+    const APItoken = res.data.access_token || res.data.data.token;
     setToken(APItoken);
     window.localStorage.setItem('token', APItoken);
-    showLogin(false);
+    showForm(false);
   }
 
   function saveUserData(res) {

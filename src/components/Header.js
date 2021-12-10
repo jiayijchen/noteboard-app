@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <>
-      <Navbar>
+      <Navbar className="py-0" style={{ maxHeight: "40px" }}>
         <Navbar.Collapse className="justify-content-end">
           <Nav>
             {token.length === 0
@@ -20,14 +20,14 @@ export default function Header() {
                 <>
                   <Button
                     variant="light"
-                    className="bg-white border-0 text-muted simplebox"
+                    className="bg-white border-0 mt-1 text-muted simplebox"
                     onClick={() => setLoginShow(true)}
                   >
                     log in
                   </Button>
                   <Button 
                     variant="light" 
-                    className="bg-white border-0 text-muted simplebox"
+                    className="bg-white border-0 mt-1 text-muted simplebox"
                     onClick={() => setRegisterShow(true)}
                   >
                     sign up

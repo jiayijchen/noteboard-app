@@ -10,7 +10,7 @@ export default function LoggedInMenu() {
   return (
     <>
       <Dropdown align="end" className="me-1">
-        <Dropdown.Toggle variant="light" className="bg-white border-0 text-muted simplebox" id="dropdown-basic">
+        <Dropdown.Toggle variant="light" className="bg-white border-0 text-muted simplebox py-1 px-1" id="dropdown-basic">
           <i className="bi-person-circle h3" />
         </Dropdown.Toggle>
 
