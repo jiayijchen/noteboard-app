@@ -12,7 +12,7 @@ export default function LoginForm(props) {
     const data = {
       "grant_type": "password",
       "client_id": 2,
-      "client_secret": "GT6KTtD5FRlQInyY5EyFH4RhfETWoB1rlHdMXezh",
+      "client_secret": "E7AsSx3awHh0lnAH452z5XKXN2ErEYFixbGhZj9C",
       "username": loginData.email,
       "password": loginData.password,
       "scope": "",
