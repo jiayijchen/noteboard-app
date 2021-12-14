@@ -54,21 +54,25 @@ export const AuthHelper = () => {
 
   function saveNotesData(res) {
     const APINotesData = res.data.data.attributes.notes;
+    console.log(APINotesData);
     if (notesData.length > 0) {
       setNotesData(prevNotesData => ([
         ...prevNotesData,
         ...APINotesData
       ]));
+      window.localStorage.setItem('notes_data', notesData);
     } else {
-      setNotesData(notesData);
+      setNotesData(APINotesData);
+      window.localStorage.setItem('notes_data', notesData);
     }
   }
 
-  function destroyToken(res) {
-    setToken('');
+  function destroyStorage(res) {
     setUserData({})
     setNotesData([]);
+    setToken('');
     window.localStorage.removeItem('user_data');
+    window.localStorage.removeItem('notes_data');
     window.localStorage.removeItem('token');
   }
 
@@ -98,7 +102,7 @@ export const AuthHelper = () => {
       method: 'get',
       route: '/api/v1/logout',
       token,
-      successMethod: destroyToken
+      successMethod: destroyStorage
     })
   }
 

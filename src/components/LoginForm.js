@@ -18,7 +18,7 @@ export default function LoginForm(props) {
       "scope": "",
     };
     login(data, props.setLoginShow);
-
+    setLoginData({});
   }
 
   function handleChange(event) {

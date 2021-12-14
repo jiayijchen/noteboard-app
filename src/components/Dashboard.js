@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Note from './Note.js';
 import Masonry from 'react-masonry-css';
 import { Col, Container, Row } from 'react-bootstrap';
