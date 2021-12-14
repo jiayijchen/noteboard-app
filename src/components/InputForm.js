@@ -7,9 +7,11 @@ import {
   Form,
   Button
 } from 'react-bootstrap';
+import { useAuth } from '../utilities/AuthContext';
 
-export default function InputForm(props) {
+export default function InputForm() {
   const [note, setNote] = useState({});
+  const { notesData, setNotesData } = useAuth();
 
   function handleChange(event) {
     setNote(prevNote => ({
@@ -19,14 +21,14 @@ export default function InputForm(props) {
   }
 
   function handleSubmit() {
-    if ('body' in note) {
+    if ('content' in note) {
       addNote(note);
       setNote({});
     }
   }
 
   function addNote(note) {
-    props.setNotesData([...props.notesData, note]);
+    setNotesData([...notesData, note]);
   }
 
   // function enterKey(event) {
@@ -36,11 +38,11 @@ export default function InputForm(props) {
   // }
 
   return (
-    <Col xs={8} sm={4} className="offset-2 offset-sm-4 mt-5 mb-5 px-0 border rounded shadow">
+    <Col xs={10} sm={8} md={4} xl={3} className="mt-5 mb-5 px-0 border rounded shadow">
       <InputGroup>
         <Form.Control
           className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"
-          placeholder="title"
+          placeholder="Title"
           type="title"
           name="title"
           value={note.title || ''}
@@ -49,10 +51,10 @@ export default function InputForm(props) {
       <InputGroup>
         <TextareaAutosize
           className="border-0 rounded-bottom simplebox vw-100 px-3 pt-1 pb-4 no-resize"
-          placeholder="enter a new note.."
+          placeholder="Enter a new note.."
           type="text"
-          name="body"
-          value={note.body || ''}
+          name="content"
+          value={note.content || ''}
           onChange={handleChange}
           // onKeyPress={enterKey}
         />

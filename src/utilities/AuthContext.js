@@ -9,8 +9,9 @@ export const AuthHelper = () => {
 
   const [token, setToken] = useState('');
   const [userData, setUserData] = useState({});
+  const [notesData, setNotesData] = useState([]);
 
-  // retaining user login information
+  // retaining user login token
   useEffect(() => {
     let lsToken = window.localStorage.getItem('token');
 
@@ -19,26 +20,59 @@ export const AuthHelper = () => {
     }
   }, [])
 
+  // get user data upon receiving token
   useEffect(() => {
-    if(token.length > 0) {
+    if (token.length > 0) {
       getUser();
     }
   }, [token])
 
+  // get note data upon receiving user data
+  useEffect(() => {
+    if (Object.keys(userData).length > 0) {
+      axiosHelper({
+        method: 'get',
+        route: '/api/v1/users/' + userData.id,
+        token,
+        successMethod: saveNotesData
+      });
+    }
+  }, [userData])
+
   function saveToken(res, showForm) {
-    const APItoken = res.data.access_token || res.data.data.token;
+    const APItoken = res.data.access_token || res.data.token;
+    showForm(false);
     setToken(APItoken);
     window.localStorage.setItem('token', APItoken);
-    showForm(false);
   }
 
   function saveUserData(res) {
     const APIUserData = res.data;
     setUserData(APIUserData);
+    window.localStorage.setItem('user_data', JSON.stringify(APIUserData));
   }
 
-  function destroyToken(res) {
+  function saveNotesData(res) {
+    const APINotesData = res.data.data.attributes.notes;
+    console.log(APINotesData);
+    if (notesData.length > 0) {
+      setNotesData(prevNotesData => ([
+        ...prevNotesData,
+        ...APINotesData
+      ]));
+      window.localStorage.setItem('notes_data', notesData);
+    } else {
+      setNotesData(APINotesData);
+      window.localStorage.setItem('notes_data', notesData);
+    }
+  }
+
+  function destroyStorage(res) {
+    setUserData({})
+    setNotesData([]);
     setToken('');
+    window.localStorage.removeItem('user_data');
+    window.localStorage.removeItem('notes_data');
     window.localStorage.removeItem('token');
   }
 
@@ -47,7 +81,7 @@ export const AuthHelper = () => {
     axiosHelper({
       data: registerData,
       method: 'post',
-      route: '/api/register', 
+      route: '/api/register',
       successMethod: (r) => saveToken(r, f)
     })
   }
@@ -57,8 +91,8 @@ export const AuthHelper = () => {
     axiosHelper({
       data: loginData,
       method: 'post',
-      route: '/oauth/token', 
-      successMethod: (r)=>saveToken(r, f)
+      route: '/oauth/token',
+      successMethod: (r) => saveToken(r, f)
     })
   }
 
@@ -68,7 +102,7 @@ export const AuthHelper = () => {
       method: 'get',
       route: '/api/v1/logout',
       token,
-      successMethod: destroyToken
+      successMethod: destroyStorage
     })
   }
 
@@ -82,7 +116,7 @@ export const AuthHelper = () => {
     })
   }
 
-  return { token, userData, register, login, logout};
+  return { token, userData, notesData, setNotesData, register, login, logout };
 }
 
 // custom Provider component

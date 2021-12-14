@@ -10,7 +10,7 @@ export default function Note(props) {
       <Card className="shadow-sm" style={{ width: "" }}>
         <Card.Body className="py-2">
           <Card.Title>{props.note.title}</Card.Title>
-          <Card.Text className="p-wrap">{props.note.body}</Card.Text>
+          <Card.Text className="p-wrap">{props.note.content}</Card.Text>
         </Card.Body>
       </Card>
     </Col>

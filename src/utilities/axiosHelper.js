@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { API_URL } from './constants.js';
 
 export const axiosHelper = ({
   method,
-  route,
+  route = '/',
   data = {},
   token = '',
   successMethod = r => console.log(r),
@@ -10,7 +11,7 @@ export const axiosHelper = ({
 }) => {
   return axios({
     method,
-    url: "https://laravel-jiayichen.codeanyapp.com" + route,
+    url: API_URL + route,
     data,
     headers: {
       "Accept": "application/json",
