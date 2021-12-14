@@ -29,7 +29,7 @@ export default function Dashboard(props) {
   // }, [])
 
   return (
-    <Container fluid>
+    <Container fluid className="pb-5">
       <Row className="justify-content-center">
         <InputForm />
       </Row>

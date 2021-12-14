@@ -5,7 +5,7 @@ import { useAuth } from '../utilities/AuthContext';
 
 export default function LoginForm(props) {
   const [loginData, setLoginData] = useState({});
-  const { login } = useAuth();
+  const { login, errorMsg } = useAuth();
 
   function submitLogin(e) {
     e.preventDefault();
@@ -54,6 +54,9 @@ export default function LoginForm(props) {
               value={loginData.password || ""}
               onChange={handleChange}
             />
+          </Form.Group>
+          <Form.Group>
+            {errorMsg.length > 0 ? <p className="text-danger">{errorMsg}</p> : <p></p>}
           </Form.Group>
           <Row>
             <Button variant="dark" type="submit" className="col-4 offset-4">log in</Button>

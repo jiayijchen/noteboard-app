@@ -38,7 +38,7 @@ export default function InputForm() {
   // }
 
   return (
-    <Col xs={10} sm={8} md={4} xl={3} className="mt-5 mb-5 px-0 border rounded shadow">
+    <Col xs={10} sm={8} md={4} xl={3} className="mt-1 mt-sm-5 mb-4 mb-sm-5 px-0 border rounded shadow">
       <InputGroup>
         <Form.Control
           className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"

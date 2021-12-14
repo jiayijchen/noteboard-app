@@ -8,6 +8,7 @@ const AuthContext = createContext({});
 export const AuthHelper = () => {
 
   const [token, setToken] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const [userData, setUserData] = useState({});
   const [notesData, setNotesData] = useState([]);
 
@@ -39,6 +40,17 @@ export const AuthHelper = () => {
     }
   }, [userData])
 
+  useEffect(() => {
+    if (notesData.length > 0) {
+      window.localStorage.setItem('notes_data', notesData);
+    }
+  }, [notesData])
+
+  function showErrorMsg(error) {
+    setErrorMsg('invalid login')
+    console.log(error);
+  }
+
   function saveToken(res, showForm) {
     const APItoken = res.data.access_token || res.data.token;
     showForm(false);
@@ -60,10 +72,8 @@ export const AuthHelper = () => {
         ...prevNotesData,
         ...APINotesData
       ]));
-      window.localStorage.setItem('notes_data', notesData);
     } else {
       setNotesData(APINotesData);
-      window.localStorage.setItem('notes_data', notesData);
     }
   }
 
@@ -82,7 +92,8 @@ export const AuthHelper = () => {
       data: registerData,
       method: 'post',
       route: '/api/register',
-      successMethod: (r) => saveToken(r, f)
+      successMethod: (r) => saveToken(r, f),
+      failureMethod: showErrorMsg
     })
   }
 
@@ -92,7 +103,8 @@ export const AuthHelper = () => {
       data: loginData,
       method: 'post',
       route: '/oauth/token',
-      successMethod: (r) => saveToken(r, f)
+      successMethod: (r) => saveToken(r, f), 
+      failureMethod: showErrorMsg
     })
   }
 
@@ -116,7 +128,7 @@ export const AuthHelper = () => {
     })
   }
 
-  return { token, userData, notesData, setNotesData, register, login, logout };
+  return { token, userData, notesData, errorMsg, setNotesData, register, login, logout };
 }
 
 // custom Provider component
