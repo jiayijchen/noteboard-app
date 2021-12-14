@@ -7,9 +7,11 @@ import {
   Form,
   Button
 } from 'react-bootstrap';
+import { useAuth } from '../utilities/AuthContext';
 
-export default function InputForm(props) {
+export default function InputForm() {
   const [note, setNote] = useState({});
+  const { notesData, setNotesData } = useAuth();
 
   function handleChange(event) {
     setNote(prevNote => ({
@@ -26,7 +28,7 @@ export default function InputForm(props) {
   }
 
   function addNote(note) {
-    props.setNotesData([...props.notesData, note]);
+    setNotesData([...notesData, note]);
   }
 
   // function enterKey(event) {
@@ -36,7 +38,7 @@ export default function InputForm(props) {
   // }
 
   return (
-    <Col xs={10} sm={8} md={4} className="mt-5 mb-5 px-0 border rounded shadow">
+    <Col xs={10} sm={8} md={4} xl={3} className="mt-5 mb-5 px-0 border rounded shadow">
       <InputGroup>
         <Form.Control
           className="border-0 rounded-top simplebox px-3 pt-2 pb-1 fw-bold"

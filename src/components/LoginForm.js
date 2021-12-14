@@ -25,7 +25,7 @@ export default function LoginForm(props) {
     setLoginData(prevLoginData => ({
       ...prevLoginData,
       [event.target.name]: event.target.value,
-    }))
+    }));
   }
 
   return (
