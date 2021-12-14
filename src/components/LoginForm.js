@@ -55,9 +55,9 @@ export default function LoginForm(props) {
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group>
+          {/* <Form.Group>
             {errorMsg.length > 0 ? <p className="text-danger">{errorMsg}</p> : <p></p>}
-          </Form.Group>
+          </Form.Group> */}
           <Row>
             <Button variant="dark" type="submit" className="col-4 offset-4">log in</Button>
           </Row>
